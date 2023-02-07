@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
+    <meta name="csrf-token" content="{{ csrf_token() }}" id="csrf-token">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 </head>
 

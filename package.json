@@ -24,6 +24,8 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "devextreme": "22.2.4",
+        "devextreme-vue": "22.2.4",
         "laravel-vue-pagination": "^3.0.0",
         "v-pagination-3": "^0.1.7",
         "vue-router": "^4.1.2",

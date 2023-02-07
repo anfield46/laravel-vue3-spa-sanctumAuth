@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserLoginRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,7 +24,8 @@ class LoginController extends Controller
                 "message" => "Login successfully",
                 "data" => [
                     "name" => Auth::user()->name,
-                    "email" => Auth::user()->email
+                    "email" => Auth::user()->email,
+                    "tes" => '1'
                 ]
             ], 200);
         }
@@ -31,7 +33,9 @@ class LoginController extends Controller
 
     public function index()
     {
-        //
+        $user = User::find(Auth::user()->id);
+        $user['tes'] = 1;
+        return response()->json($user, 200);
     }
 
     /**

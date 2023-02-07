@@ -18,12 +18,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:sanctum')->get('/user', [LoginController::class, "index"]);
 
 Route::post("register", [RegisterController::class, "store"]);
 Route::post("login", [LoginController::class, "login"]);
 Route::post("logout", [LogOutController::class, "logout"]);
 
 Route::apiResource("book", BookController::class);
+
+// Route::get('/user', [\App\Http\Controllers\UserController::class, 'index']);
+Route::post('/getuser', [\App\Http\Controllers\UserController::class, 'getuser']);
+Route::get('/user/create', [\App\Http\Controllers\UserController::class, 'create']);
+Route::post('/user/store', [\App\Http\Controllers\UserController::class, 'store']);
+Route::get('/user/edit/{id}', [\App\Http\Controllers\UserController::class, 'edit']);
+Route::put('/user/update/{id}', [\App\Http\Controllers\UserController::class, 'update']);
+Route::delete('/user/delete/{id}', [\App\Http\Controllers\UserController::class, 'destroy']);
+
+Route::get('/unitkerja', [\App\Http\Controllers\UnitKerjaController::class, 'index']);
+Route::post('/getunitkerja', [\App\Http\Controllers\UnitKerjaController::class, 'getunitkerja']);
+Route::get('/dataunitkerja', [\App\Http\Controllers\UnitKerjaController::class, 'dataunitkerja']);

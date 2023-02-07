@@ -19,12 +19,12 @@
                     id="navbarSupportedContent"
                 >
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
+                        <li class="nav-item" v-if="store.state.auth.auth">
                             <router-link
                                 class="nav-link"
                                 :to="{ name: 'home' }"
                             >
-                                Home
+                                Home Welcome {{ store.state.auth.auth.tes }}
                             </router-link>
                         </li>
                         <li class="nav-item">
@@ -41,6 +41,14 @@
                                 :to="{ name: 'register' }"
                             >
                                 Register
+                            </router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link
+                                class="nav-link"
+                                :to="{ name: 'user' }"
+                            >
+                                User
                             </router-link>
                         </li>
                         <li class="nav-item">
@@ -71,6 +79,7 @@ export default {
     setup() {
         let router = useRouter();
         let store = useStore();
+
         onMounted(async () => {
             await axios.get("/sanctum/csrf-cookie"); //for csrf sap sanctum
             try {
@@ -78,6 +87,7 @@ export default {
                 store.dispatch("setAuth", {
                     name: response.data.name,
                     email: response.data.email,
+                    tes: response.data.tes,
                 });
             } catch (error) {
                 if (
@@ -86,12 +96,21 @@ export default {
                 ) {
                     store.dispatch("setAuth", null);
                 }
-                console.log(error);
+                console.log(error.response.status);
+
             }
         });
-        return {};
+        return {
+            store
+        };
     },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+	@import 'devextreme/dist/css/dx.light.compact.css';
+
+    .mt-5 {
+      margin-top: 100px!important;
+    }
+</style>

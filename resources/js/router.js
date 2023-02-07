@@ -3,6 +3,7 @@ import Login from "./pages/Login.vue";
 import Home from "./pages/Home.vue";
 import Register from "./pages/Register.vue";
 import Dashboard from "./pages/Dashboard.vue";
+import User from "./pages/ManageUser/User/Index.vue";
 import store from "./store";
 
 const router = createRouter({
@@ -36,6 +37,14 @@ const router = createRouter({
             name: "dashboard",
             path: "/dashboard",
             component: Dashboard,
+            meta: {
+                middlware: "auth",
+            }
+        },
+        {
+            name: "user",
+            path: "/user",
+            component: User,
             meta: {
                 middlware: "auth",
             }
